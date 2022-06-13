@@ -2349,7 +2349,7 @@ let allLetterData = [];
 const resetGame = () => window.location.reload();
 const hideEndGameModal = () => (endGameModal.style.display = "none");
 const displayEndGameModal = () => (endGameModal.style.display = "block");
-const error = () => getRowElement().classList.add("shakeAnimtion");
+const displayError = () => getRowElement().classList.add("shakeAnimtion");
 
 // This function only assigns a text content to our div
 const displayLetterInDom = (letter) => {
@@ -2401,7 +2401,7 @@ const checkUserAction = (e) => {
 
   // will shake the row if user presses ENTER and they have not entered 5 letters
   if (enterAction && !validEnterAction) {
-    error();
+    displayError();
   }
 
   if (backspaceAction) {
@@ -2452,7 +2452,7 @@ const validateWord = () => {
     });
     renderResultInDom();
   } else {
-    error();
+    displayError();
   }
 };
 
