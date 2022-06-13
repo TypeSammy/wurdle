@@ -11,95 +11,94 @@
 </head>
 
 <body>
+    <header>
+        <h1 class="neonText">WURDLE</h1>
+    </header>
+    <div id="playable-section">
+        <section id="section0">
+            <div class="content0  position0"></div>
+            <div class="content0  position1"></div>
+            <div class="content0  position2"></div>
+            <div class="content0  position3"></div>
+            <div class="content0  position4"></div>
+        </section>
+        <section id="section1">
+            <div class="content1 position0"></div>
+            <div class="content1 position1"></div>
+            <div class="content1 position2"></div>
+            <div class="content1 position3"></div>
+            <div class="content1 position4"></div>
+        </section>
+        <section id="section2">
+            <div class="content2 position0"></div>
+            <div class="content2 position1"></div>
+            <div class="content2 position2"></div>
+            <div class="content2 position3"></div>
+            <div class="content2 position4"></div>
+        </section>
+        <section id="section3">
+            <div class="content3 active position0"></div>
+            <div class="content3 active position1"></div>
+            <div class="content3 active position2"></div>
+            <div class="content3 active position3"></div>
+            <div class="content3 active position4"></div>
+        </section>
+        <section id="section4">
+            <div class="content4 position0"></div>
+            <div class="content4 position1"></div>
+            <div class="content4 position2"></div>
+            <div class="content4 position3"></div>
+            <div class="content4 position4"></div>
+        </section>
+        <section id="section5">
+            <div class="content5 position0"></div>
+            <div class="content5 position1"></div>
+            <div class="content5 position2"></div>
+            <div class="content5 position3"></div>
+            <div class="content5 position4"></div>
+        </section>
+    </div>
+    <div id="game-end-modal">
+        <h2 id="modal-heading"></h2>
+        <p id="modal-message"></p>
+    </div>
+    <div id="keyboard">
+        <div id="keyboard-row1">
+            <div class="letter">Q</div>
+            <div class="letter">W</div>
+            <div class="letter">E</div>
+            <div class="letter">R</div>
+            <div class="letter">T</div>
+            <div class="letter">Y</div>
+            <div class="letter">U</div>
+            <div class="letter">I</div>
+            <div class="letter">O</div>
+            <div class="letter">P</div>
+        </div>
+        <div id="keyboard-row2">
+            <div class="letter">A</div>
+            <div class="letter">S</div>
+            <div class="letter">D</div>
+            <div class="letter">F</div>
+            <div class="letter">G</div>
+            <div class="letter">H</div>
+            <div class="letter">J</div>
+            <div class="letter">K</div>
+            <div class="letter">L</div>
+        </div>
+        <div id="keyboard-row3">
+            <div class="letter">ENTER</div>
+            <div class="letter">Z</div>
+            <div class="letter">X</div>
+            <div class="letter">C</div>
+            <div class="letter">V</div>
+            <div class="letter">B</div>
+            <div class="letter">N</div>
+            <div class="letter">M</div>
+            <div class="letter">BACKSPACE</div>
+        </div>
+    </div>
+    <button id="reset-button">RESET</button>
 </body>
-<header>
-    <h1>WURDLE</h1>
-</header>
-<div id="playable-section">
-    <section id="section0">
-        <div class="content0  position0"></div>
-        <div class="content0  position1"></div>
-        <div class="content0  position2"></div>
-        <div class="content0  position3"></div>
-        <div class="content0  position4"></div>
-    </section>
-    <section id="section1">
-        <div class="content1 position0"></div>
-        <div class="content1 position1"></div>
-        <div class="content1 position2"></div>
-        <div class="content1 position3"></div>
-        <div class="content1 position4"></div>
-    </section>
-    <section id="section2">
-        <div class="content2 position0"></div>
-        <div class="content2 position1"></div>
-        <div class="content2 position2"></div>
-        <div class="content2 position3"></div>
-        <div class="content2 position4"></div>
-    </section>
-    <section id="section3">
-        <div class="content3 active position0"></div>
-        <div class="content3 active position1"></div>
-        <div class="content3 active position2"></div>
-        <div class="content3 active position3"></div>
-        <div class="content3 active position4"></div>
-    </section>
-    <section id="section4">
-        <div class="content4 position0"></div>
-        <div class="content4 position1"></div>
-        <div class="content4 position2"></div>
-        <div class="content4 position3"></div>
-        <div class="content4 position4"></div>
-    </section>
-    <section id="section5">
-        <div class="content5 position0"></div>
-        <div class="content5 position1"></div>
-        <div class="content5 position2"></div>
-        <div class="content5 position3"></div>
-        <div class="content5 position4"></div>
-    </section>
-</div>
-<div id="game-end-modal">
-    <h2 id="modal-heading"></h2>
-    <p id="modal-message"></p>
-    <button id="close-button">x</button>
-</div>
-<button id="reset-button">RESET</button>
-<div id="keyboard">
-    <div id="keyboard-row1">
-        <div class="letter">Q</div>
-        <div class="letter">W</div>
-        <div class="letter">E</div>
-        <div class="letter">R</div>
-        <div class="letter">T</div>
-        <div class="letter">Y</div>
-        <div class="letter">U</div>
-        <div class="letter">I</div>
-        <div class="letter">O</div>
-        <div class="letter">P</div>
-    </div>
-    <div id="keyboard-row2">
-        <div class="letter">A</div>
-        <div class="letter">S</div>
-        <div class="letter">D</div>
-        <div class="letter">F</div>
-        <div class="letter">G</div>
-        <div class="letter">H</div>
-        <div class="letter">J</div>
-        <div class="letter">K</div>
-        <div class="letter">L</div>
-    </div>
-    <div id="keyboard-row3">
-        <div class="letter">ENTER</div>
-        <div class="letter">Z</div>
-        <div class="letter">X</div>
-        <div class="letter">C</div>
-        <div class="letter">V</div>
-        <div class="letter">B</div>
-        <div class="letter">N</div>
-        <div class="letter">M</div>
-        <div class="letter">BACKSPACE</div>
-    </div>
-</div>
 
 </html>

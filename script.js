@@ -2325,7 +2325,6 @@ const getActiveRowElement = () =>
 
 // grabbing our relevant HTML elements
 const endGameModal = document.querySelector("#game-end-modal");
-const closeModalButton = document.querySelector("#close-button");
 const resetButton = document.querySelector("#reset-button");
 const modalHeading = document.querySelector("#modal-heading");
 const modalMessage = document.querySelector("#modal-message");
@@ -2482,8 +2481,8 @@ const checkForEndCondition = () => {
   }
 
   if (maximumTriesMet) {
-    modalHeading.textContent = "Word is:";
-    modalMessage.textContent = winningWordArray.join("");
+    modalHeading.textContent = "You lose";
+    modalMessage.textContent = `Word is: ${winningWordArray.join("")}`;
     displayEndGameModal("block");
   }
 
@@ -2533,7 +2532,6 @@ const removeKeydownAndClickEvent = () => {
 
 // need END GAME condition where it stops the game
 resetButton.addEventListener("click", resetGame);
-closeModalButton.addEventListener("click", hideEndGameModal);
 document.body.addEventListener("keydown", checkUserAction);
 digitalKeyboard.forEach((letter) =>
   letter.addEventListener("click", checkUserAction)
