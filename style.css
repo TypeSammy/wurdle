@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+body {
+  margin: 10vw;
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+}
+
+h1,
+h2 {
+  margin: 10px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+#playable-section {
+  margin-bottom: 15px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding-bottom: 5px;
+}
+
+section div {
+  line-height: 2;
+  border: solid 1px #00000029;
+  width: 50px;
+  height: 55px;
+  font-size: 30px;
+}
+
+.correctLetterPosition {
+  background-color: #4caf50;
+  color: white;
+}
+
+.correctLetter {
+  background-color: orange;
+  color: white;
+}
+
+.incorrectLetter {
+  background-color: #9d9d9d;
+  color: white;
+}
+
+#game-end-modal {
+  background-color: #e4e4e4e2;
+  border-radius: 10px;
+  max-width: 220px;
+  margin: 0 auto;
+  padding: 35px 0px 35px 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 250px;
+  display: none;
+}
+
+button {
+  background-color: #878787b0;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+}
+
+#reset-button {
+  font-size: 1em;
+  width: 130px;
+  height: 50px;
+}
+
+#close-button {
+  border-radius: 80%;
+  height: 26px;
+  line-height: 6px;
+  position: absolute;
+  right: 5%;
+  top: 9%;
+}
+
+button:hover {
+  background-color: #9c5454b0;
+}
+
+.shakeAnimtion {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: 0.05s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+#keyboard {
+  margin-top: 20px;
+}
+
+#keyboard-row1,
+#keyboard-row2,
+#keyboard-row3 {
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: center;
+  gap: 3px;
+}
+
+#keyboard-row1 div,
+#keyboard-row2 div,
+#keyboard-row3 div {
+  background-color: #9c9c9cb0;
+  border-radius: 3px;
+  padding: 10px;
+  min-width: 13px;
+}
+
+#keyboard-row1 div:hover,
+#keyboard-row2 div:hover,
+#keyboard-row3 div:hover {
+  background-color: #b5b5b5b0;
+}
