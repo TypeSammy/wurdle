@@ -2333,7 +2333,7 @@ const digitalKeyboard = document.querySelectorAll(".letter");
 // mathFloor / math random to generate a random number between 0 - validWords length
 const randomIndex = Math.floor(Math.random() * validWords.length + 1);
 // use randomIndex to select a random word. Turn to upper case. Split to turn into an array
-const winningWordArray = "THORN".split("");
+const winningWordArray = validWords[randomIndex].toUpperCase().split("");
 
 // stores the typed letter and we use this as our source fo truth
 let enteredWordArray = [];
