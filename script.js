@@ -2319,7 +2319,8 @@ let validWords = [
 // number to keep track of which ROW to DOM manipulate
 let contentRowNumber = 0;
 // turned this into a function so when it's CALLED it will RE-QUERY the DOM at that specific point in the code.
-let getRowElement = () => document.querySelector(`#section${contentRowNumber}`);
+const getRowElement = () =>
+  document.querySelector(`#section${contentRowNumber}`);
 const getActiveRowElement = () =>
   document.querySelectorAll(`.content${contentRowNumber}`);
 
@@ -2507,7 +2508,7 @@ digitalKeyboard.forEach((letter) =>
   letter.addEventListener("click", checkUserAction)
 );
 
-// NOTE: ORIGINAL PSEUDO CODE
+// ORIGINAL PSEUDO CODE BELOW
 
 // if (enteredWord == winningWord) {
 //   console.log("WINNER");
