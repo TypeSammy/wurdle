@@ -2318,7 +2318,7 @@ let validWords = [
 
 // number to keep track of which ROW to DOM manipulate
 let contentRowNumber = 0;
-// turned this into a function so when it's CALLED it will RE-QUERY the DOM at that specific point in the code.
+// turned this into a function so when it's CALLED it will RE-QUERY the DOM at that specific point in the code. We want to do this because our contentRowNumber may have changed.
 const getRowElement = () =>
   document.querySelector(`#section${contentRowNumber}`);
 const getActiveRowElement = () =>
@@ -2357,10 +2357,10 @@ const displayLetterInDom = (letter) => {
     const boxPosition = document.querySelector(`.position${i}`);
     let content = boxPosition.textContent;
 
-    // if there is NO textContent in our position
+    // if there is NO textContent in our position, so it will loop through and the next empty content it will assign a letter then stop
     if (!content) {
       boxPosition.textContent = letter;
-      break; // to stop it after it assigns the text content
+      break;
     }
   }
 };
@@ -2377,13 +2377,17 @@ const deleteLetter = () => {
 const checkUserAction = (e) => {
   getRowElement().classList.remove("shakeAnimtion");
 
+  // e.key is for our "keypress" eventListener, and e.target.innerText is for our "click"
   const valueEntered = (e.key || e.target.innerText).toUpperCase();
   const regexForAlphabet = /^[A-Za-z]+$/;
 
+  // if anything other than a single letter is pressed this will be false
   const notASpecialKey = valueEntered.length === 1;
+  // checks if the string is an alphabet AND is not a special key
   const validLetter = valueEntered.match(regexForAlphabet) && notASpecialKey;
   const backspaceAction = valueEntered === "BACKSPACE";
   const enterAction = valueEntered === "ENTER";
+  // checks if the ENTER key was pressed and if there is 5 letters in our array
   const validEnterAction = enterAction && enteredWordArray.length === 5;
 
   if (validLetter) {
@@ -2403,6 +2407,7 @@ const checkUserAction = (e) => {
   }
 };
 
+// this is where if the word entered exists, it will generate our data for us to use for the DOM
 const validateWord = () => {
   const enteredWord = enteredWordArray.join("");
   const wordIsValid = validWords.find(
@@ -2439,13 +2444,14 @@ const validateWord = () => {
       }
       allLetterData.push(letterStatistic);
     });
-    renderResult();
+    renderResultInDom();
   } else {
     getRowElement().classList.add("shakeAnimtion");
   }
 };
 
-const renderResult = () => {
+// this is where we use our source of truth data to display to the user
+const renderResultInDom = () => {
   const boxPosition = getActiveRowElement();
 
   allLetterData.map((letter, index) => {
@@ -2475,7 +2481,10 @@ const checkForEndCondition = () => {
   const maximumTriesMet = contentRowNumber === 6;
 
   if (winConditionMet) {
-    renderMessageWithModal("Congrats!", `You guessed ${contentRowNumber}/6`);
+    renderMessageWithModal(
+      "Congrats!",
+      `Correctly guessed in ${contentRowNumber}/6`
+    );
   }
 
   if (maximumTriesMet) {
@@ -2491,6 +2500,7 @@ const renderMessageWithModal = (heading, subheading) => {
   modalHeading.textContent = heading;
   modalMessage.textContent = subheading;
 
+  // nice little UI to show users that you can't click the digital keyboard anymore since the game is over
   digitalKeyboard.forEach((letter) => letter.classList.add("disable"));
 
   removeKeydownAndClickEvent();
