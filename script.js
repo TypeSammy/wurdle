@@ -2497,6 +2497,14 @@ const removeKeydownAndClickEvent = () => {
   );
 };
 
+resetButton.addEventListener("click", resetGame);
+document.body.addEventListener("keydown", checkUserAction);
+digitalKeyboard.forEach((letter) =>
+  letter.addEventListener("click", checkUserAction)
+);
+
+// NOTE: ORIGINAL PSEUDO CODE
+
 // if (enteredWord == winningWord) {
 //   console.log("WINNER");
 // }
@@ -2531,8 +2539,3 @@ const removeKeydownAndClickEvent = () => {
 // if guessedWords array length = 6 END GAME
 
 // need END GAME condition where it stops the game
-resetButton.addEventListener("click", resetGame);
-document.body.addEventListener("keydown", checkUserAction);
-digitalKeyboard.forEach((letter) =>
-  letter.addEventListener("click", checkUserAction)
-);
