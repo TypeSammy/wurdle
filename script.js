@@ -2318,7 +2318,7 @@ let validWords = [
 
 // number to keep track of which ROW to DOM manipulate
 let contentRowNumber = 0;
-// turned this into a function so when it's CALLED it will RE-QUERY the DOM which should update what the true current content number is
+// turned this into a function so when it's CALLED it will RE-QUERY the DOM at that specific point in the code.
 let getRowElement = () => document.querySelector(`#section${contentRowNumber}`);
 const getActiveRowElement = () =>
   document.querySelectorAll(`.content${contentRowNumber}`);
@@ -2330,18 +2330,16 @@ const modalHeading = document.querySelector("#modal-heading");
 const modalMessage = document.querySelector("#modal-message");
 const digitalKeyboard = document.querySelectorAll(".letter");
 
-// mathFloor / math random to generate a random number between 0 - validWords length
 const randomIndex = Math.floor(Math.random() * validWords.length + 1);
-// use randomIndex to select a random word. Turn to upper case. Split to turn into an array
 const winningWordArray = validWords[randomIndex].toUpperCase().split("");
 
-// stores the typed letter and we use this as our source fo truth
+// stores each valid letter that was pressed
 let enteredWordArray = [];
 
-// allLetterData is used to store an array of objects with relevent information. Once a word is pushed in it should look like the below for every single letter
+// allLetterData will be our source of truth. It is used to store an array of objects with relevent information about each letter. Once that data is pushed in it should look like the below for every single letter
 // [
 //   {
-//     correctPosition: true,
+//     correctPosition: false,
 //     exists: true,
 //   },
 // ];
@@ -2351,14 +2349,14 @@ const resetGame = () => window.location.reload();
 const hideEndGameModal = () => (endGameModal.style.display = "none");
 const displayEndGameModal = () => (endGameModal.style.display = "block");
 
-// This function only assigns a text content to our square
+// This function only assigns a text content to our div
 const displayLetterInDom = (letter) => {
-  for (let i = 0; i < winningWordArray.length; i++) {
-    // get the "position" class for every loop
+  for (let i = 0; i < enteredWordArray.length; i++) {
+    // get the "position" class for every loop which is each div where the typed letters are supposed to go into
     const boxPosition = document.querySelector(`.position${i}`);
     let content = boxPosition.textContent;
 
-    // if there is NO textContent in our position[i] class
+    // if there is NO textContent in our position
     if (!content) {
       boxPosition.textContent = letter;
       break; // to stop it after it assigns the text content
@@ -2382,10 +2380,10 @@ const checkUserAction = (e) => {
   const regexForAlphabet = /^[A-Za-z]+$/;
 
   const notASpecialKey = valueEntered.length === 1;
-  const enterPress = valueEntered === "ENTER";
-  const backspacePress = valueEntered === "BACKSPACE";
   const validLetter = valueEntered.match(regexForAlphabet) && notASpecialKey;
-  const validEnter = enterPress && enteredWordArray.length === 5;
+  const backspaceAction = valueEntered === "BACKSPACE";
+  const enterAction = valueEntered === "ENTER";
+  const validEnterAction = enterAction && enteredWordArray.length === 5;
 
   if (validLetter) {
     // this way we always make sure the user can't enter more than 5 letters
@@ -2395,16 +2393,16 @@ const checkUserAction = (e) => {
     displayLetterInDom(valueEntered);
   }
 
-  if (backspacePress) {
+  if (backspaceAction) {
     deleteLetter();
   }
 
-  if (validEnter) {
-    checkValidWord();
+  if (validEnterAction) {
+    validateWord();
   }
 };
 
-const checkValidWord = () => {
+const validateWord = () => {
   const enteredWord = enteredWordArray.join("");
   const wordIsValid = validWords.find(
     (word) => enteredWord === word.toUpperCase()
@@ -2412,6 +2410,7 @@ const checkValidWord = () => {
 
   if (wordIsValid) {
     enteredWordArray.forEach((enteredLetter, index) => {
+      // store our stats for each letter
       let letterStatistic = {};
 
       const atCorrectIndex = enteredLetter === winningWordArray[index];
@@ -2449,6 +2448,7 @@ const renderResult = () => {
   const boxPosition = getActiveRowElement();
 
   allLetterData.map((letter, index) => {
+    // re-assigns the class name for each DIV based on our data we collected
     if (letter.exists && letter.correctPosition) {
       boxPosition[index].classList = "correctLetterPosition";
     }
@@ -2461,9 +2461,9 @@ const renderResult = () => {
       boxPosition[index].classList = "incorrectLetter";
     }
   });
-  // resets allLetterData array so it's empty after every valid enter
+  // resets allLetterData array so it's empty after every valid enter to then be re-used for the next section
   allLetterData = [];
-  // increment contentRowNumber so it will continue onto the next row in our HTML
+  // increment contentRowNumber so when we query our content class it will go to the next content row
   contentRowNumber++;
   checkForEndCondition();
 };
@@ -2474,22 +2474,26 @@ const checkForEndCondition = () => {
   const maximumTriesMet = contentRowNumber === 6;
 
   if (winConditionMet) {
-    modalHeading.textContent = "Congrats!";
-    modalMessage.textContent = `You guessed ${contentRowNumber}/6`;
-    removeKeydownAndClickEvent();
-    displayEndGameModal("block");
+    renderMessageWithModal("Congrats!", `You guessed ${contentRowNumber}/6`);
   }
 
   if (maximumTriesMet) {
-    modalHeading.textContent = "You lose";
-    modalMessage.textContent = `Word is: ${winningWordArray.join("")}`;
-    displayEndGameModal("block");
+    renderMessageWithModal("You lose", `Word is: ${winningWordArray.join("")}`);
   }
 
   // resets the entered word array to empty so if none of the end conditions are met the user can continue to type
   enteredWordArray = [];
 };
 
+// function that takes in two strings to use as the heading and subheading in our end game modal. Using it this way, we can re-use the one function to create our winning and losing message
+const renderMessageWithModal = (heading, subheading) => {
+  modalHeading.textContent = heading;
+  modalMessage.textContent = subheading;
+  removeKeydownAndClickEvent();
+  displayEndGameModal("block");
+};
+
+// remove event listener once game has ended
 const removeKeydownAndClickEvent = () => {
   document.body.removeEventListener("keydown", checkUserAction);
   digitalKeyboard.forEach((letter) =>
