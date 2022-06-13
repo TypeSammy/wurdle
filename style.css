@@ -160,28 +160,8 @@ button {
   opacity: 1;
 }
 
-/* #reset-button {
-  margin-top: 30px;
-  width: 130px;
-  height: 50px;
-  box-shadow: 0 0 7px #dd40f0, 0 0 50px #dd40f0, 0 0 20px #dd40f0;
-  color: white;
-  text-shadow: 0 0 2px white;
-  background-color: #dd40f0;
-  font-size: 17px;
-  letter-spacing: 1px;
-}
-
-#reset-button:hover {
-  transition: 0.3s;
-  box-shadow: 0 0 10px #dab2de, 0 0 30px #dd40f0, 0 0 30px #dd40f0;
-} */
-
 .shakeAnimtion {
-  /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.5s;
-
-  /* When the animation is finished, start again */
   animation-iteration-count: 0.05s;
 }
 
@@ -248,4 +228,8 @@ button {
 #keyboard-row2 div:hover,
 #keyboard-row3 div:hover {
   background-color: #626262b0;
+}
+
+.disable {
+  cursor: not-allowed;
 }

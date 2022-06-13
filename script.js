@@ -2490,6 +2490,9 @@ const checkForEndCondition = () => {
 const renderMessageWithModal = (heading, subheading) => {
   modalHeading.textContent = heading;
   modalMessage.textContent = subheading;
+
+  digitalKeyboard.forEach((letter) => letter.classList.add("disable"));
+
   removeKeydownAndClickEvent();
   displayEndGameModal("block");
 };
