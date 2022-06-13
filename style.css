@@ -55,17 +55,20 @@ section div {
   background-color: #4cb851;
   box-shadow: 0 0 3px #00ff0c;
   color: #fff;
+  transition: 0.3s;
 }
 
 .correctLetter {
   background-color: #f68f31;
   box-shadow: 0 0 4px #ff9700;
   color: white;
+  transition: 0.3s;
 }
 
 .incorrectLetter {
   background-color: #2f2d2d;
   color: #7e7e7e;
+  transition: 0.3s;
 }
 
 #game-end-modal {
