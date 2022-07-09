@@ -25,6 +25,6 @@ git@github.com:TypeSammy/wurdle.git
 
 Open `index.html` either by clicking on the file or in the directory `open index.html`
 
-## 📸 Screenshot
+## 📸 Recording
+https://user-images.githubusercontent.com/78893002/178126297-8de25824-b834-4dcd-b44a-725d83dc47b6.mov
 
-![](https://github.com/TypeSammy/wurdle/blob/master/wurdle-screenshot.png)
