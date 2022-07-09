@@ -2332,8 +2332,7 @@ const modalMessage = document.querySelector("#modal-message");
 const digitalKeyboard = document.querySelectorAll(".letter");
 
 const randomIndex = Math.floor(Math.random() * validWords.length + 1);
-// const winningWordArray = validWords[randomIndex].toUpperCase().split("");
-const winningWordArray = "THORN".split("");
+const winningWordArray = validWords[randomIndex].toUpperCase().split("");
 
 // stores each valid letter that was pressed
 let enteredWordArray = [];
@@ -2500,12 +2499,12 @@ const renderMessageWithModal = (heading, subheading) => {
   modalHeading.textContent = heading;
   modalMessage.textContent = subheading;
 
-  // nice little UI to show users that you can't click the digital keyboard anymore since the game is over
   disableDigitalKeyboard();
   removeKeydownAndClickEvent();
   displayEndGameModal();
 };
 
+// nice little UI to show users that you can't click the digital keyboard anymore since the game is over
 const disableDigitalKeyboard = () =>
   digitalKeyboard.forEach((letter) => letter.classList.add("disable"));
 
