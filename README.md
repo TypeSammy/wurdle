@@ -8,7 +8,7 @@ The end goal is to separate each function into its own distinct sections, and to
 
 Neon lights by [Kevin Powell](https://www.youtube.com/watch?v=6xNcXwC6ikQ)
 
-## How to play
+## 🛠️ Run locally
 
 You can either fork this repo then clone it to your local or just clone it to your local directly.
 HTTPS
@@ -24,3 +24,7 @@ git@github.com:TypeSammy/wurdle.git
 ```
 
 Open `index.html` either by clicking on the file or in the directory `open index.html`
+
+## 📸 Screenshot
+
+![](https://github.com/TypeSammy/wurdle/blob/master/wurdle-screenshot.png)
