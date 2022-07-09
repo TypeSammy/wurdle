@@ -2332,22 +2332,22 @@ const modalMessage = document.querySelector("#modal-message");
 const digitalKeyboard = document.querySelectorAll(".letter");
 
 const randomIndex = Math.floor(Math.random() * validWords.length + 1);
-const winningWordArray = validWords[randomIndex].toUpperCase().split("");
+// const winningWordArray = validWords[randomIndex].toUpperCase().split("");
+const winningWordArray = "THORN".split("");
 
 // stores each valid letter that was pressed
 let enteredWordArray = [];
 
-// allLetterData will be our source of truth. It is used to store an array of objects with relevent information about each letter. Once that data is pushed in it should look like the below for every single letter
+// allLettersData will be our source of truth. It is used to store an array of objects with relevent information about each letter. Once that data is pushed in it should look like the below for every single letter
 // [
 //   {
 //     correctPosition: false,
 //     exists: true,
 //   },
 // ];
-let allLetterData = [];
+let allLettersData = [];
 
 const resetGame = () => window.location.reload();
-const hideEndGameModal = () => (endGameModal.style.display = "none");
 const displayEndGameModal = () => (endGameModal.style.display = "block");
 const displayError = () => getRowElement().classList.add("shakeAnimtion");
 
@@ -2400,17 +2400,11 @@ const checkUserAction = (e) => {
   }
 
   // will shake the row if user presses ENTER and they have not entered 5 letters
-  if (enterAction && !validEnterAction) {
-    displayError();
-  }
+  if (enterAction && !validEnterAction) displayError();
 
-  if (backspaceAction) {
-    deleteLetter();
-  }
+  if (backspaceAction) deleteLetter();
 
-  if (validEnterAction) {
-    validateWord();
-  }
+  if (validEnterAction) validateWord();
 };
 
 // this is where if the word entered exists, it will generate our data for us to use for the DOM
@@ -2448,7 +2442,7 @@ const validateWord = () => {
           exists: false,
         };
       }
-      allLetterData.push(letterStatistic);
+      allLettersData.push(letterStatistic);
     });
     renderResultInDom();
   } else {
@@ -2460,7 +2454,7 @@ const validateWord = () => {
 const renderResultInDom = () => {
   const boxPosition = getActiveRowElement();
 
-  allLetterData.map((letter, index) => {
+  allLettersData.forEach((letter, index) => {
     // re-assigns the class name for each DIV based on our data we collected
     if (letter.exists && letter.correctPosition) {
       boxPosition[index].classList = "correctLetterPosition";
@@ -2475,7 +2469,7 @@ const renderResultInDom = () => {
     }
   });
   // resets allLetterData array so it's empty after every valid enter to then be re-used for the next section
-  allLetterData = [];
+  allLettersData = [];
   // increment contentRowNumber so when we query our content class it will go to the next content row
   contentRowNumber++;
   checkForEndCondition();
@@ -2507,11 +2501,13 @@ const renderMessageWithModal = (heading, subheading) => {
   modalMessage.textContent = subheading;
 
   // nice little UI to show users that you can't click the digital keyboard anymore since the game is over
-  digitalKeyboard.forEach((letter) => letter.classList.add("disable"));
-
+  disableDigitalKeyboard();
   removeKeydownAndClickEvent();
-  displayEndGameModal("block");
+  displayEndGameModal();
 };
+
+const disableDigitalKeyboard = () =>
+  digitalKeyboard.forEach((letter) => letter.classList.add("disable"));
 
 // remove event listener once game has ended
 const removeKeydownAndClickEvent = () => {
@@ -2526,40 +2522,3 @@ document.body.addEventListener("keydown", checkUserAction);
 digitalKeyboard.forEach((letter) =>
   letter.addEventListener("click", checkUserAction)
 );
-
-// ORIGINAL PSEUDO CODE BELOW
-
-// if (enteredWord == winningWord) {
-//   console.log("WINNER");
-// }
-
-// if (allWords.length > 6) {
-//   allWords.length = 6;
-// }
-
-// console.log(allWords);
-
-// have a winning word
-// have a guessed word
-
-// on key down keep 5 letters
-// on enter compare words
-
-// loop to compare both words
-// if letter exists turn letter orange
-// if letter exists AND it's in the same INDEX turn letter green
-// if letter does not exist turn letter grey
-
-// allow 6 guesses
-// how to store ALREADY guessed value?
-// what data structure do i want to use?
-// maybe an object?
-
-// WIN CONDITION:
-// if guess word equals winningWord
-// END GAME
-
-// LOSE CONDITION:
-// if guessedWords array length = 6 END GAME
-
-// need END GAME condition where it stops the game
